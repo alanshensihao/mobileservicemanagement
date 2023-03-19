@@ -10,7 +10,7 @@ public class MDMClient {
 
     public static void main(String[] args) 
 	{
-		String message = "Test12345";
+		String message = "Testing_xyz";
 		
 		try
 		{
