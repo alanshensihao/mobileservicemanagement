@@ -38,7 +38,7 @@ public class UserManagement {
     public void deleteUser(String fullName) {
         System.out.println("WARNING: Removing user: " + fullName + " and all associated accounts.\n");
 
-        // add functionality for removing associated accounts upon call - send signal to call remove functions?
+        // add functionality for removing associated accounts upon call
 
         users.remove(fullName);
     }
