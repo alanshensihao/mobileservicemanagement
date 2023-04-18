@@ -10,7 +10,9 @@ JR = java
 # If your version of make can't handle the leading tabs on each
 # line, just remove them (these are also just added for readability).
 CLASSES = \
-	MDMClient.java
+	MDMClient.java \
+	Command.java \
+	UI.java
 
 default: classes
 

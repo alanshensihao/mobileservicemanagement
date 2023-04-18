@@ -7,19 +7,32 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class MDMClient {
-
-  private static int port = 1234;
+public class MDMClient
+{
+  private static final int port = 1234;
 
   public static void main(String[] args) 
   {
     String message;
+    UI ui = new UI();
     
     try
     {
       while (true)
       {
-        printMenu();
+        ui.printUI();
+        break;
+        /*
+        String userInput = System.console().readLine();
+        try
+        {
+          Integer.parseInt(userInput);
+        }
+        catch (NumberFormatException e)
+        {
+
+        }
+
         int menuOption = Integer.parseInt(System.console().readLine());
         InetAddress host = InetAddress.getLocalHost();
         Socket socket = new Socket(host.getHostName(), port);
@@ -53,6 +66,7 @@ public class MDMClient {
             System.out.println("Our team is still working on these options!!! Please try again later :)");
             break;
         }
+        */
       }
     }
     catch (Exception e)
@@ -60,20 +74,4 @@ public class MDMClient {
       System.out.println("Error");
     }
   }
-    
-  public static void printMenu(){
-    System.out.println("\nMenu:");
-    System.out.println("1. Add User <user details in comma-separated list>");
-    System.out.println("2. Add Users <users' details in comma-separated list>");
-    System.out.println("3. Update User <user>");
-    System.out.println("4. Delete User <username>");
-    System.out.println("5. Delete Users< users names list>");
-    System.out.println("6. Add Account <phone, user, bundle>");
-    System.out.println("7. Add Account <account>");
-    System.out.println("8. Delete Account <phone>");
-    System.out.println("9. Update Account <phone, bundle>");
-    System.out.println("10. Add Preconfigured Bundle <bundle name> ");
-    System.out.println("11. Add PaC Bundle <bundle name> ");
-  }
-
 }
