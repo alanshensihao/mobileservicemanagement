@@ -133,4 +133,22 @@ public class Bundle
         System.out.println("Not a valid PaC data plan. This account still has the default 0 GB.");
     }
   }
+
+  public boolean isPaCBundle()
+  {
+    if (this.name != "Pick and Choose")
+    {
+      return false;
+    }
+    return true;
+  }
+
+  public void getBundleDetails()
+  {
+    System.out.println("Bundle type is " + name);
+    System.out.println("Calling plan is: " + callingPlan);
+    System.out.println("Messaging plan is: " + messagingPlan);
+    System.out.println("Data plan is: " + dataPlan);
+    System.out.println("Monthly total fees for this plan are: " + Double.toString(monthlyFees));
+  }
 }
