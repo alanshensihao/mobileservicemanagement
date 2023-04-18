@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class MDMClient
 {
   private static UI ui;
@@ -23,16 +21,9 @@ public class MDMClient
     ui = new UI();
     clientMessageHandler = new ClientMessageHandler();
 
-    try
+    while (true)
     {
-      while (true)
-      {
-        clientLoop();
-      }
-    }
-    catch (Exception e)
-    {
-      System.out.println("Error");
+      clientLoop();
     }
   }
 }
