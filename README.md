@@ -1,12 +1,36 @@
 # mobile-device-management
 
+## Dependencies
+
+java sdk, make, git
+
 ## Server
 
 Handles the client requests and handles the database. Server must be running before the client.
 
+Execute the following commands...
+
+cd src/server
+
+make clean
+
+make
+
+make run
+
 ## Client
 
 UI client to send requests to the server.
+
+Execute the following commands...
+
+cd src/client
+
+make clean
+
+make
+
+make run
 
 ### Team Members
 
@@ -20,12 +44,4 @@ Nathan Ingram
 
 Shriya Satish
 
-
-### TODO:
-1. Design pattern implementation for all the services
-
-2. Observer pattern implementation for Client-server
-
-3. Implementation of report service and automated reports
-
-4. Overall Integration and meet the requirments for the project
+Sihao Shen
