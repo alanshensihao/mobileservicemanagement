@@ -3,12 +3,21 @@ public class User
   public String fullName;
   public String address;
   public String email;
+  public int userId;
 
   public User(String fullName, String address, String email)
   {
     this.fullName = fullName;
     this.address = address;
     this.email = email;
+  }
+
+  public User(String fullName, String address, String email, int userId)
+  {
+    this.fullName = fullName;
+    this.address = address;
+    this.email = email;
+    this.userId = userId;
   }
 
   public String getAddress()
@@ -42,5 +51,10 @@ public class User
       throw new IllegalArgumentException("null given as new email value.");
     }
     this.email = newEmail;
+  }
+
+  public void setUserId(int id)
+  {
+    this.userId = id;
   }
 }

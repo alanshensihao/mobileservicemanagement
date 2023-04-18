@@ -19,35 +19,35 @@ public class Bundle
         this.messagingPlan = "Unlimited Messages";
         this.dataPlan = "10 GB";
         this.monthlyFees = 100;
-
+        return;
       case "Gold":
         this.name = "Gold Bundle";
         this.callingPlan = "Unlimited Canada wide calling";
         this.messagingPlan = "10K Messages";
         this.dataPlan = "4 GB";
         this.monthlyFees = 80;
-
+        return;
       case "Silver":
         this.name = "Silver Bundle";
         this.callingPlan = "100 min free Canada wide calling";
         this.messagingPlan = "5K Messages";
         this.dataPlan = "2 GB";
         this.monthlyFees = 45;
-
+        return;
       case "Bronze":
         this.name = "Bronze Bundle";
         this.callingPlan = "30 min free Canada wide calling";
         this.messagingPlan = "250 Messages";
         this.dataPlan = "1 GB";
         this.monthlyFees = 25;
-
+        return;
       case "Pick and Choose":
         this.name = name;
         this.callingPlan = "Zero min";
         this.messagingPlan = "Zero messages";
         this.dataPlan = "0 GB";
         this.monthlyFees = 10;
-
+        return;
       default:
         throw new IllegalArgumentException("Illegal Argument - Not a recognized bundle name.");
     }
@@ -66,15 +66,19 @@ public class Bundle
       case "Platinum":
         this.callingPlan = "Unlimited US & Canada wide calling";
         this.monthlyFees += 40;
+        return;
       case "Gold":
         this.callingPlan = "Unlimited Canada wide calling";
         this.monthlyFees += 30;
+        return;
       case "Silver":
         this.callingPlan = "100 min free Canada wide calling";
         this.monthlyFees += 20;
+        return;
       case "Bronze":
         this.callingPlan = "30 min free Canada wide calling";
         this.monthlyFees += 15;
+        return;
       default:
         System.out.println("Not a valid PaC calling plan. This account still has the default 0 min.");
     }
@@ -93,15 +97,19 @@ public class Bundle
       case "Platinum":
         this.messagingPlan = "Unlimited Messaging";
         this.monthlyFees += 45;
+        return;
       case "Gold":
         this.messagingPlan = "10K Messages";
         this.monthlyFees += 35;
+        return;
       case "Silver":
         this.messagingPlan = "5K Messages";
         this.monthlyFees += 25;
+        return;
       case "Bronze":
         this.messagingPlan = "250 Messages";
         this.monthlyFees += 20;
+        return;
       default:
         System.out.println("Not a valid PaC messaging plan. This account still has the default 0 messages.");
     }
@@ -120,15 +128,19 @@ public class Bundle
       case "Platinum" :
         this.dataPlan = "10 GB";
         this.monthlyFees += 40;
+        return;
       case "Gold" :
         this.dataPlan = "7 GB";
         this.monthlyFees += 30;
+        return;
       case "Silver" :
         this.dataPlan = "4 GB";
         this.monthlyFees += 25;
+        return;
       case "Bronze" :
         this.dataPlan = "2 GB";
         this.monthlyFees += 20;
+        return;
       default:
         System.out.println("Not a valid PaC data plan. This account still has the default 0 GB.");
     }
