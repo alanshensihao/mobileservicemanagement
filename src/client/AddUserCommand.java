@@ -10,6 +10,6 @@ public class AddUserCommand extends Command
   @Override
   String execute()
   {
-    return "";
+    return "addUser:";
   }
 }
