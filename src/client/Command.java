@@ -1,13 +1,19 @@
 import java.util.List;
 
-public class Command
+public abstract class Command
 {
   public String outputText;
   public List<String> inputs;
-  public boolean allowMultiple;
 
   public Command()
   {
-    allowMultiple = false;
   }
+
+  public Command(String outputText, List<String> inputs)
+  {
+    this.outputText = outputText;
+    this.inputs = inputs;
+  }
+
+  abstract String execute();
 }

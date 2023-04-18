@@ -40,6 +40,7 @@ public class MDMServer
             oos.writeObject(acknowledgement);
             System.out.println("Sent Message: " + acknowledgement);
             oos.close();
+            break;
           case "3":
             userManagement.updateUser(parameters[1], parameters[2], parameters[3]);
             acknowledgement = "Successfully updated the user " + parameters[1];
@@ -47,6 +48,7 @@ public class MDMServer
             oos1.writeObject(acknowledgement);
             System.out.println("Sent Message: " + acknowledgement);
             oos1.close();
+            break;
           case "4":
             userManagement.deleteUser(parameters[1]);
             acknowledgement = "Successfully deleted the user " + parameters[1];
@@ -54,6 +56,7 @@ public class MDMServer
             oos2.writeObject(acknowledgement);
             System.out.println("Sent Message: " + acknowledgement);
             oos2.close();
+            break;
         }
         ois.close();
         socket.close();

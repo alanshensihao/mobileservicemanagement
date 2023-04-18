@@ -10,14 +10,7 @@ JR = java
 # If your version of make can't handle the leading tabs on each
 # line, just remove them (these are also just added for readability).
 CLASSES = \
-	MDMServer.java \
-	AccountManagement.java \
-	Bundle.java \
-	BundleManagement.java \
-	Menu.java \
-	ServiceAccount.java \
-	User.java \
-	UserManagement.java
+	MDMServer.java
 
 default: classes
 
