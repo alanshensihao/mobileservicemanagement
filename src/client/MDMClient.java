@@ -10,19 +10,27 @@ import java.net.Socket;
 public class MDMClient
 {
   private static final int port = 1234;
+  private static UI ui;
+
+  private static void clientLoop()
+  {
+    ui.printUI();
+    String messageToServer = ui.retrieveUserInput();
+    if (!messageToServer.isEmpty())
+    {
+
+    }
+  }
 
   public static void main(String[] args) 
   {
-    String message;
-    UI ui = new UI();
-    
+    ui = new UI();
     try
     {
       while (true)
       {
-        ui.printUI();
-        break;
-        /*
+        clientLoop();
+                /*
         String userInput = System.console().readLine();
         try
         {

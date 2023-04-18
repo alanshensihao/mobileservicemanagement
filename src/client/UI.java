@@ -1,6 +1,7 @@
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 enum MenuOption
 {
@@ -34,13 +35,14 @@ class UI
 
   public void printUI()
   {
-    System.out.println("---------- Please enter a menu option ----------");
+    System.out.println();
+    System.out.println("========== Please Enter A Menu Option ==========");
     for (Map.Entry<MenuOption, Command> mapEntry : uiMap.entrySet())
     {
       System.out.print(mapEntry.getKey().ordinal() + 1 + ". ");
       System.out.print(mapEntry.getValue().outputText + " ");
 
-      if (!(mapEntry.getValue().inputs.size() == 1 && mapEntry.getValue().inputs.get(0).isEmpty()))
+      if (mapEntry.getValue().inputs.size() != 0)
       {
         System.out.print("<");
         for (int i = 0; i < mapEntry.getValue().inputs.size(); ++i)
@@ -57,6 +59,38 @@ class UI
     }
   }
 
+  public String retrieveUserInput()
+  {
+    final int lastMenuVal = MenuOption.values()[MenuOption.values().length - 1].ordinal() + 1;
+    System.out.print(" > ");
+    String userInput = System.console().readLine();
+    String messageToServer = "";
+
+    if (userInput.equalsIgnoreCase("q") || userInput.equalsIgnoreCase("quit") || userInput.equalsIgnoreCase("exit"))
+    {
+      System.exit(0);
+    }
+
+    try
+    {
+      int menuOption = Integer.parseInt(userInput);
+
+      if (menuOption > 0 && menuOption < (lastMenuVal + 1))
+      {
+        messageToServer = userInput;
+      }
+      else
+      {
+        throw new Exception("Invalid number");
+      }
+    }
+    catch (Exception e)
+    {
+      System.out.println("Error: Number expected between 1 and " + lastMenuVal);
+    }
+    return messageToServer;
+  }
+
   private Map<MenuOption, Command> createMap()
   {
     Map<MenuOption, Command> newMap = new TreeMap<MenuOption, Command>();
@@ -68,10 +102,6 @@ class UI
     return newMap;
   }
 
-  // TODO: Is USER and USERNAME different?
-  // TODO: Is PHONE and PHONE NUMBER different?
-  // TODO: Is ACCOUNT an ID?
-  // TODO: What user information to store? Currently only the username
   private Command buildCommand(MenuOption menuOption)
   {
     Command newCommand = new Command();
@@ -79,11 +109,12 @@ class UI
     {
       case ADD_USER:
         newCommand.outputText = "Add User";
-        newCommand.inputs = Arrays.asList("Username", "...");
+        newCommand.inputs = Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address");
         break;
       case ADD_USERS:
         newCommand.outputText = "Add Users";
-        newCommand.inputs = Arrays.asList("Username", "...");
+        newCommand.inputs = Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address", "...");
+        newCommand.allowMultiple = true;
         break;
       case UPDATE_USER:
         newCommand.outputText = "Update User";
@@ -96,6 +127,7 @@ class UI
       case DELETE_USERS:
         newCommand.outputText = "Delete Users";
         newCommand.inputs = Arrays.asList("Username", "...");
+        newCommand.allowMultiple = true;
         break;
       case ADD_ACCOUNT_V1:
         newCommand.outputText = "Add Account";
@@ -135,7 +167,7 @@ class UI
         break;
       case LIST_ALL_USERS:
         newCommand.outputText = "List All Users' Names";
-        newCommand.inputs = Arrays.asList("");
+        newCommand.inputs = new ArrayList<String>();
         break;
       case LIST_ACCOUNT:
         newCommand.outputText = "List Account";
@@ -159,11 +191,11 @@ class UI
         break;
       case LIST_ALL_PRE_BUNDLES:
         newCommand.outputText = "List All Preconfigured Bundle Names";
-        newCommand.inputs = Arrays.asList("");
+        newCommand.inputs = new ArrayList<String>();
         break;
       case LIST_ALL_PAC_BUNDLES:
         newCommand.outputText = "List All PaC Bundle Names";
-        newCommand.inputs = Arrays.asList("");
+        newCommand.inputs = new ArrayList<String>();
         break;
       default:
         System.out.println("Invalid menuOption");

@@ -4,6 +4,10 @@ public class Command
 {
   public String outputText;
   public List<String> inputs;
+  public boolean allowMultiple;
 
-  public Command() {}
+  public Command()
+  {
+    allowMultiple = false;
+  }
 }

@@ -3,7 +3,7 @@ JC = javac
 JR = java
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) $*.java
+	$(JC) $(JFLAGS) $*.java -Xlint
 
 # This uses the line continuation character (\) for readability
 # You can list these all on a single line, separated by a space instead.
