@@ -3,7 +3,7 @@ public class User
   public String fullName;
   public String address;
   public String email;
-  public int userId;
+  public int userId = 0;
 
   public User(String fullName, String address, String email)
   {
@@ -56,5 +56,10 @@ public class User
   public void setUserId(int id)
   {
     this.userId = id;
+  }
+
+  public int getUserId()
+  {
+    return this.userId;
   }
 }

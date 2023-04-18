@@ -3,6 +3,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class MDMServer
 {
@@ -24,22 +25,39 @@ public class MDMServer
         Socket socket = server.accept();  
 
         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-        String message = (String) ois.readObject();
+        String message = (String)ois.readObject();
         System.out.println("Retrieved Message: " + message);
-        String[] parameters = message.split(",\\s*");
+        ArrayList<String> parameters = message.split(",\\s*");
         System.out.println("parameters: " + parameters);
         String menu_option = parameters[0];
         String acknowledgement;
         switch (menu_option)
         {
           case "1":
-            User user1 = new User(parameters[1], parameters[2], parameters[3]);
+            String userFullName = parameters[1] + parameters[2];
+            String userAddress = parameters[3];
+            String userEmail = parameters[4];
+            User user1 = new User(userFullName, userAddress, userEmail);
             userManagement.addUser(user1);
-            acknowledgement = "Successfully added the user " + parameters[1];
+            acknowledgement = "Successfully added the user " + userFullName;
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(acknowledgement);
             System.out.println("Sent Message: " + acknowledgement);
             oos.close();
+            return;
+          case "2":
+            if ((parameters.size() % 4) != 0)
+            {
+              oos.writeObject("Incorrect number of arguments for adding multiple users. Please try again.\n");
+              return;
+            }
+            for (int i = 0; i < (parameters.size() / 4); i++)
+            {
+              int position = i * 4;
+              String userFullName = parameters[position + 1] + parameters[position + 2];
+              String userAddress = parameters[position + 3];
+              String userEmail = parameters[position + 4];
+            }
           case "3":
             userManagement.updateUser(parameters[1], parameters[2], parameters[3]);
             acknowledgement = "Successfully updated the user " + parameters[1];
@@ -47,6 +65,7 @@ public class MDMServer
             oos1.writeObject(acknowledgement);
             System.out.println("Sent Message: " + acknowledgement);
             oos1.close();
+            return;
           case "4":
             userManagement.deleteUser(parameters[1]);
             acknowledgement = "Successfully deleted the user " + parameters[1];

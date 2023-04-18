@@ -21,6 +21,10 @@ public class UserManagement
   {
     for (User user : userList)
     {
+      if (user.getUserId() == 0)
+      {
+        user.setUserId(users.size() + 1);
+      }
       addUser(user);
     }
   }
