@@ -11,7 +11,7 @@ public class MDMServer
   {
     String messageFromClient = serverMessageHandler.retrieveMessage();
 
-    builder.buildResponse(messageFromClient);
+    builder.handleResponse(messageFromClient);
 
     String messageToClient = "test";
     serverMessageHandler.sendMessage(messageToClient);

@@ -18,7 +18,7 @@ public class Builder
   {
   }
 
-  public void buildResponse(String message)
+  public void handleResponse(String message)
   {
     MessageContainer messageContainer = parseMessage(message);
 
@@ -27,7 +27,85 @@ public class Builder
     {
       System.out.println("Message Content: " + messageContent);
     }
+    handleMessage(messageContainer);
   }
+
+  public void handleMessage(MessageContainer messageContainer)
+  {
+    switch(messageContainer.menuOption)
+    {
+      case ADD_USER:
+				break;
+
+      case ADD_USERS:
+				break;
+
+      case UPDATE_USER:
+				break;
+
+      case DELETE_USER:
+				break;
+
+      case DELETE_USERS:
+				break;
+
+      case ADD_ACCOUNT_V1:
+				break;
+
+      case ADD_ACCOUNT_V2:
+				break;
+
+      case DELETE_ACCOUNT:
+				break;
+
+      case UPDATE_ACCOUNT:
+				break;
+
+      case ADD_PRE_BUNDLE:
+				break;
+
+      case ADD_PAC_BUNDLE_V1:
+				break;
+
+      case ADD_PAC_BUNDLE_V2:
+				break;
+
+      case ADD_PAC_BUNDLE_V3:
+				break;
+
+      case LIST_USER_DETAILS:
+				break;
+
+      case LIST_ALL_USERS:
+				break;
+
+      case LIST_ACCOUNT:
+				break;
+
+      case LIST_ACCOUNTS:
+				break;
+
+      case LIST_MONTHLY_FEES:
+				break;
+
+      case LIST_MONTHLY_FEES_ALL:
+				break;
+
+      case LIST_BUNDLE_DETAILS:
+				break;
+
+      case LIST_ALL_PRE_BUNDLES:
+				break;
+
+      case LIST_ALL_PAC_BUNDLES:
+				break;
+
+      default:
+        System.out.println("Invalid menuOption");
+				break;
+		}
+  }
+
 
   // TODO: The messages could be formatted better so the parsing is less error prone
   // Doesn't handle blank entries or entires with ';' currently
