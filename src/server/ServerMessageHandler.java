@@ -6,15 +6,22 @@ import java.net.Socket;
 
 public class ServerMessageHandler
 {
-  private static final int port = 1234;
-  private static ServerSocket server;
-  private static Socket socket;
+  private final int port = 1234;
+  private ServerSocket server;
+  private Socket socket;
+  private ObjectOutputStream oos;
+  private ObjectInputStream ois;
 
   public ServerMessageHandler()
   {
     try
     {
       server = new ServerSocket(port);
+
+      System.out.println("Waiting for client to connect...");
+      socket = server.accept();
+      oos = new ObjectOutputStream(socket.getOutputStream());
+      ois = new ObjectInputStream(socket.getInputStream());
     }
     catch(Exception e)
     {
@@ -26,9 +33,7 @@ public class ServerMessageHandler
   {
     try
     {
-      ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
       oos.writeObject(messageToClient);
-      oos.close();
     }
     catch(Exception e)
     {
@@ -41,12 +46,7 @@ public class ServerMessageHandler
     String messageFromClient = "";
     try
     {
-      System.out.println("Listening to the client...");
-      socket = server.accept();
-
-      ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
       messageFromClient = (String) ois.readObject();
-      ois.close();
     }
     catch(Exception e)
     {

@@ -18,7 +18,6 @@ public class MDMServer
     System.out.println("messageToClient: " + messageToClient);
   }
 
-  // TODO: This implementation has weaknesses, if the field is empty or ';' is used then this will break
   private static void parseMessage(String messageFromClient)
   {
     final int MINIMUM_MESSAGE_SIZE = 2;
@@ -42,8 +41,6 @@ public class MDMServer
       }
 
       MenuOption selectedOption = MenuOption.values()[Integer.parseInt(messageOption)];
-      
-      //TODO: MenuOption and message contents are here at this point. How to use it?
     }
     catch(Exception e)
     {
