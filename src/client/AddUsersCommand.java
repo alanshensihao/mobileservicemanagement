@@ -8,8 +8,17 @@ public class AddUsersCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.ADD_USERS.ordinal() + "=";
+    String userInput = "";
+    do
+    {
+      messageToBuild += super.execute();
+      System.out.print("Do you want to enter another user? [y/n] ");
+      userInput = System.console().readLine();
+    }
+    while (userInput.equalsIgnoreCase("y"));
+    return messageToBuild;
   }
 }

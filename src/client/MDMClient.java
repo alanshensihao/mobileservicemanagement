@@ -7,12 +7,15 @@ public class MDMClient
   {
     ui.printUI();
     String messageToServer = ui.retrieveUserInput();
+
+    System.out.println("messageToServer: " + messageToServer);
+
     if (!messageToServer.isEmpty())
     {
       clientMessageHandler.sendMessage(messageToServer);
       String responseMessageFromServer = clientMessageHandler.retrieveMessage();
 
-      System.out.println(responseMessageFromServer);
+      System.out.println("responseMessageFromServer: " + responseMessageFromServer);
     }
   }
 

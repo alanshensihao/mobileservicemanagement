@@ -8,8 +8,10 @@ public class ListUserDetailsCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.LIST_USER_DETAILS.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

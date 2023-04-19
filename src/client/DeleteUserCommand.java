@@ -8,8 +8,10 @@ public class DeleteUserCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.DELETE_USER.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

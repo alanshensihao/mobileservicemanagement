@@ -8,8 +8,10 @@ public class DeleteAccountCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.DELETE_ACCOUNT.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

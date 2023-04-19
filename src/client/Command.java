@@ -1,6 +1,6 @@
 import java.util.List;
 
-public abstract class Command
+public class Command
 {
   public String outputText;
   public List<String> inputs;
@@ -15,5 +15,15 @@ public abstract class Command
     this.inputs = inputs;
   }
 
-  abstract String execute();
+  public String execute()
+  {
+    String messageToBuild = "";
+    for (String input : inputs)
+    {
+      System.out.print("Please enter your \'" + input + "\': ");
+      String userInput = System.console().readLine();
+      messageToBuild += input + ":" + userInput + ";";
+    }
+    return messageToBuild;
+  }
 }

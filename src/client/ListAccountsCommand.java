@@ -8,8 +8,10 @@ public class ListAccountsCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.LIST_ACCOUNTS.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

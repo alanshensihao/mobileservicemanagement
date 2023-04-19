@@ -8,8 +8,10 @@ public class ListBundleDetailsCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.LIST_BUNDLE_DETAILS.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

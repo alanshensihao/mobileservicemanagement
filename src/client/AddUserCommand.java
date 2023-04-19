@@ -8,8 +8,10 @@ public class AddUserCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "addUser:";
+    String messageToBuild = MenuOption.ADD_USER.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

@@ -86,7 +86,7 @@ class UI
         return new AddUserCommand("Add User", Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address"));
 
       case ADD_USERS:
-        return new AddUsersCommand("Add Users", Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address", "..."));
+        return new AddUsersCommand("Add Users", Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address"));
 
       case UPDATE_USER:
         return new UpdateUserCommand("Update User", Arrays.asList("Username"));
@@ -95,7 +95,7 @@ class UI
         return new DeleteUserCommand("Delete User", Arrays.asList("Username"));
 
       case DELETE_USERS:
-        return new DeleteUsersCommand("Delete Users", Arrays.asList("Username", "..."));
+        return new DeleteUsersCommand("Delete Users", Arrays.asList("Username"));
 
       case ADD_ACCOUNT_V1:
         return new AddAccountV1Command("Add Account", Arrays.asList("Phone Number", "Username", "Service Bundle"));

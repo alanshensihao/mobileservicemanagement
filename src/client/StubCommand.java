@@ -7,7 +7,7 @@ public class StubCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
     return "";
   }

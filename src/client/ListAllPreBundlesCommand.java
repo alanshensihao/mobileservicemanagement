@@ -8,8 +8,10 @@ public class ListAllPreBundlesCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.LIST_ALL_PRE_BUNDLES.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

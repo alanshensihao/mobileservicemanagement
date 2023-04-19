@@ -8,8 +8,10 @@ public class UpdateAccountCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.UPDATE_ACCOUNT.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

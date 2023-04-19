@@ -8,8 +8,10 @@ public class AddPreBundleCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.ADD_PRE_BUNDLE.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

@@ -8,8 +8,10 @@ public class AddPacBundleV2Command extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.ADD_PAC_BUNDLE_V2.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

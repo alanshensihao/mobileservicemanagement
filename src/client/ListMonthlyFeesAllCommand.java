@@ -8,8 +8,10 @@ public class ListMonthlyFeesAllCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.LIST_MONTHLY_FEES_ALL.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }

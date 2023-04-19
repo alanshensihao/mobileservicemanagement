@@ -8,8 +8,10 @@ public class UpdateUserCommand extends Command
   }
 
   @Override
-  String execute()
+  public String execute()
   {
-    return "";
+    String messageToBuild = MenuOption.UPDATE_USER.ordinal() + "=";
+    messageToBuild += super.execute();
+    return messageToBuild;
   }
 }
