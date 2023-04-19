@@ -12,6 +12,7 @@ JR = java
 CLASSES = \
 	MDMServer.java \
 	AccountManagement.java \
+	ServerMessageHandler.java \
 	Bundle.java \
 	BundleManagement.java \
 	MenuOption.java \
