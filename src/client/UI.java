@@ -3,32 +3,6 @@ import java.util.TreeMap;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-enum MenuOption
-{
-  ADD_USER, 
-  ADD_USERS,
-  UPDATE_USER,
-  DELETE_USER,
-  DELETE_USERS,
-  ADD_ACCOUNT_V1,
-  ADD_ACCOUNT_V2,
-  DELETE_ACCOUNT,
-  UPDATE_ACCOUNT,
-  ADD_PRE_BUNDLE,
-  ADD_PAC_BUNDLE_V1,
-  ADD_PAC_BUNDLE_V2,
-  ADD_PAC_BUNDLE_V3,
-  LIST_USER_DETAILS,
-  LIST_ALL_USERS,
-  LIST_ACCOUNT,
-  LIST_ACCOUNTS,
-  LIST_MONTHLY_FEES,
-  LIST_MONTHLY_FEES_ALL,
-  LIST_BUNDLE_DETAILS,
-  LIST_ALL_PRE_BUNDLES,
-  LIST_ALL_PAC_BUNDLES
-}
-
 class UI
 {
   public final Map<MenuOption, Command> uiMap = createMap();
@@ -77,7 +51,9 @@ class UI
 
       if (menuOption > 0 && menuOption < (lastMenuVal + 1))
       {
-        messageToServer = userInput;
+        MenuOption selectedOption = MenuOption.values()[menuOption - 1];
+        Command commandToExecute = uiMap.get(selectedOption);
+        messageToServer = commandToExecute.execute();
       }
       else
       {
@@ -104,103 +80,77 @@ class UI
 
   private Command buildCommand(MenuOption menuOption)
   {
-    Command newCommand = new Command();
     switch(menuOption)
     {
       case ADD_USER:
-        newCommand.outputText = "Add User";
-        newCommand.inputs = Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address");
-        break;
+        return new AddUserCommand("Add User", Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address"));
+
       case ADD_USERS:
-        newCommand.outputText = "Add Users";
-        newCommand.inputs = Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address", "...");
-        newCommand.allowMultiple = true;
-        break;
+        return new AddUsersCommand("Add Users", Arrays.asList("First Name", "Last Name", "Phone Number", "Address", "Email Address"));
+
       case UPDATE_USER:
-        newCommand.outputText = "Update User";
-        newCommand.inputs = Arrays.asList("Username");
-        break;
+        return new UpdateUserCommand("Update User", Arrays.asList("Username"));
+
       case DELETE_USER:
-        newCommand.outputText = "Delete User";
-        newCommand.inputs = Arrays.asList("Username");
-        break;
+        return new DeleteUserCommand("Delete User", Arrays.asList("Username"));
+
       case DELETE_USERS:
-        newCommand.outputText = "Delete Users";
-        newCommand.inputs = Arrays.asList("Username", "...");
-        newCommand.allowMultiple = true;
-        break;
+        return new DeleteUsersCommand("Delete Users", Arrays.asList("Username"));
+
       case ADD_ACCOUNT_V1:
-        newCommand.outputText = "Add Account";
-        newCommand.inputs = Arrays.asList("Phone", "Username", "Bundle");
-        break;
+        return new AddAccountV1Command("Add Account", Arrays.asList("Phone Number", "Username", "Service Bundle"));
+
       case ADD_ACCOUNT_V2:
-        newCommand.outputText = "Add Account";
-        newCommand.inputs = Arrays.asList("Account");
-        break;
+        return new AddAccountV2Command("Add Account", Arrays.asList("Account ID"));
+
       case DELETE_ACCOUNT:
-        newCommand.outputText = "Delete Account";
-        newCommand.inputs = Arrays.asList("Phone");
-        break;
+        return new DeleteAccountCommand("Delete Account", Arrays.asList("Phone Number"));
+
       case UPDATE_ACCOUNT:
-        newCommand.outputText = "Update Account";
-        newCommand.inputs = Arrays.asList("Phone", "Bundle");
-        break;
+        return new UpdateAccountCommand("Update Account", Arrays.asList("Phone Number", "Bundle Name"));
+
       case ADD_PRE_BUNDLE:
-        newCommand.outputText = "Add Preconfigured Bundle";
-        newCommand.inputs = Arrays.asList("Bundle Name");
-        break;
+        return new AddPreBundleCommand("Add Preconfigured Bundle", Arrays.asList("Bundle Name"));
+
       case ADD_PAC_BUNDLE_V1:
-        newCommand.outputText = "Add PaC Bundle";
-        newCommand.inputs = Arrays.asList("Bundle Name");
-        break;
+        return new AddPacBundleV1Command("Add PaC Bundle", Arrays.asList("Bundle Name"));
+
       case ADD_PAC_BUNDLE_V2:
-        newCommand.outputText = "Add PaC Bundle with Calling Option";
-        newCommand.inputs = Arrays.asList("Calling Plan Name");
-        break;
+        return new AddPacBundleV2Command("Add PaC Bundle with Calling Option", Arrays.asList("Calling Plan Name"));
+
       case ADD_PAC_BUNDLE_V3:
-        newCommand.outputText = "Add PaC Bundle with Messaging Option";
-        newCommand.inputs = Arrays.asList("Messaging Plan Name");
-        break;
+        return new AddPacBundleV3Command("Add PaC Bundle with Messaging Option", Arrays.asList("Messaging Plan Name"));
+
       case LIST_USER_DETAILS:
-        newCommand.outputText = "List User Details";
-        newCommand.inputs = Arrays.asList("Username");
-        break;
+        return new ListUserDetailsCommand("List User Details", Arrays.asList("Username"));
+
       case LIST_ALL_USERS:
-        newCommand.outputText = "List All Users' Names";
-        newCommand.inputs = new ArrayList<String>();
-        break;
+        return new ListAllUsersCommand("List All Users' Names", new ArrayList<String>());
+
       case LIST_ACCOUNT:
-        newCommand.outputText = "List Account";
-        newCommand.inputs = Arrays.asList("Phone Number");
-        break;
+        return new ListAccountCommand("List Account", Arrays.asList("Phone Number"));
+
       case LIST_ACCOUNTS:
-        newCommand.outputText = "List Accounts";
-        newCommand.inputs = Arrays.asList("Username");
-        break;
+        return new ListAccountsCommand("List Accounts", Arrays.asList("Username"));
+
       case LIST_MONTHLY_FEES:
-        newCommand.outputText = "List Monthly Fees";
-        newCommand.inputs = Arrays.asList("Phone Number");
-        break;
+        return new ListMonthlyFeesCommand("List Monthly Fees", Arrays.asList("Phone Number"));
+
       case LIST_MONTHLY_FEES_ALL:
-        newCommand.outputText = "List Monthly Fees All Accounts";
-        newCommand.inputs = Arrays.asList("Username");
-        break;
+        return new ListMonthlyFeesAllCommand("List Monthly Fees All Accounts", Arrays.asList("Username"));
+
       case LIST_BUNDLE_DETAILS:
-        newCommand.outputText = "List Bundle Details";
-        newCommand.inputs = Arrays.asList("Bundle Name");
-        break;
+        return new ListBundleDetailsCommand("List Bundle Details", Arrays.asList("Bundle Name"));
+
       case LIST_ALL_PRE_BUNDLES:
-        newCommand.outputText = "List All Preconfigured Bundle Names";
-        newCommand.inputs = new ArrayList<String>();
-        break;
+        return new ListAllPreBundlesCommand("List All Preconfigured Bundle Names", new ArrayList<String>());
+
       case LIST_ALL_PAC_BUNDLES:
-        newCommand.outputText = "List All PaC Bundle Names";
-        newCommand.inputs = new ArrayList<String>();
-        break;
+        return new ListAllPacBundlesCommand("List All PaC Bundle Names", new ArrayList<String>());
+
       default:
         System.out.println("Invalid menuOption");
-        break;
+        return new StubCommand();
     }
-    return newCommand;
   }
 }
