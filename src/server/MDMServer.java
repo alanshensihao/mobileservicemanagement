@@ -11,12 +11,48 @@ public class MDMServer
     String messageFromClient = serverMessageHandler.retrieveMessage();
     System.out.println("messageFromClient: " + messageFromClient);
 
+		parseMessage(messageFromClient);
+
     String messageToClient = "test";
     serverMessageHandler.sendMessage(messageToClient);
     System.out.println("messageToClient: " + messageToClient);
   }
 
-  public static void main(String args[])
+	// TODO: This implementation has weaknesses, if the field is empty or ';' is used then this will break
+	private static void parseMessage(String messageFromClient)
+  {
+    final int MINIMUM_MESSAGE_SIZE = 2;
+    try
+    {
+			if (messageFromClient.length() < MINIMUM_MESSAGE_SIZE + 1)
+      {
+        throw new Exception("Invalid message");
+      }
+
+      String messageOption = messageFromClient.substring(0,1);
+      String message = "";
+      message = messageFromClient.substring(2, messageFromClient.length());
+      if (!message.isEmpty())
+      {
+        String[] messageContents = message.split(";");
+        for (String messageContent : messageContents)
+        {
+          System.out.println(messageContent);
+        }
+      }
+
+      MenuOption selectedOption = MenuOption.values()[Integer.parseInt(messageOption)];
+			
+			//TODO: MenuOption and message contents are here at this point. How to use it?
+    }
+    catch(Exception e)
+    {
+      System.out.println("Error parsing the message from the client");
+    }
+  }
+
+
+	public static void main(String[] args) 
   {
     serverMessageHandler = new ServerMessageHandler();
 
