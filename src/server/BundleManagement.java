@@ -5,28 +5,19 @@ import java.beans.PropertyChangeEvent;
 public class BundleManagement implements PropertyChangeListener
 {
   Map<String, Bundle> bundles = new HashMap<>();
+  private MessageContainer messageContainer;
 
   public void propertyChange(PropertyChangeEvent evt)
   {
-    MessageContainer messageContainer = (MessageContainer)evt.getNewValue();
+    this.messageContainer = (MessageContainer)evt.getNewValue();
+    this.performRequestedTask();
+  }
+
+  public void performRequestedTask()
+  {
     // case wise handling of message passed down by server
     switch(messageContainer.menuOption)
     {
-      case ADD_USER:
-        break;
-
-      case ADD_USERS:
-        break;
-
-      case UPDATE_USER:
-        break;
-
-      case DELETE_USER:
-        break;
-
-      case DELETE_USERS:
-        break;
-
       case ADD_ACCOUNT_V1:
         break;
 

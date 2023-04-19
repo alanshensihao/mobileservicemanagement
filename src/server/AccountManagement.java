@@ -6,10 +6,16 @@ import java.beans.PropertyChangeEvent;
 public class AccountManagement implements PropertyChangeListener
 {
   Map<String, ServiceAccount> accounts = new HashMap<>();
+  MessageContainer messageContainer;
 
   public void propertyChange(PropertyChangeEvent evt)
   {
-    MessageContainer messageContainer = (MessageContainer)evt.getNewValue();
+    this.messageContainer = (MessageContainer)evt.getNewValue();
+    this.performRequestedTask();
+  }
+
+  public void performRequestedTask()
+  {
     // case wise handling of message passed down by server
     switch(messageContainer.menuOption)
     {
