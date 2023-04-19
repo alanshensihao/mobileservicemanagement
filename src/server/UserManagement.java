@@ -9,6 +9,13 @@ public class UserManagement implements PropertyChangeListener
   Map<String, User> users = new HashMap<>();
   private MessageContainer messageContainer;
 
+  ServerMessageHandler serverMessageHandler;
+
+  public UserManagement(ServerMessageHandler msgHandler)
+  {
+    this.serverMessageHandler = msgHandler;
+  }
+
   public void propertyChange(PropertyChangeEvent evt)
   {
     this.messageContainer = (MessageContainer)evt.getNewValue();
@@ -21,6 +28,8 @@ public class UserManagement implements PropertyChangeListener
     switch(messageContainer.menuOption)
     {
       case ADD_USER:
+        System.out.println("Adding user!");
+        serverMessageHandler.sendMessage("Adding User!\n");
         break;
 
       case ADD_USERS:

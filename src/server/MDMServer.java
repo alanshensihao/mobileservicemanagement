@@ -23,9 +23,9 @@ public class MDMServer
     serverMessageHandler = new ServerMessageHandler();
     builder = new Builder();
 
-    userManagement = new UserManagement();
-    bundleManagement = new BundleManagement();
-    accountManagement = new AccountManagement();
+    userManagement = new UserManagement(serverMessageHandler);
+    bundleManagement = new BundleManagement(serverMessageHandler);
+    accountManagement = new AccountManagement(serverMessageHandler);
 
     builder.addPropertyChangeListener(userManagement);
     builder.addPropertyChangeListener(bundleManagement);

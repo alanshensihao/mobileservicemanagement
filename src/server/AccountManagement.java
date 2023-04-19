@@ -8,6 +8,13 @@ public class AccountManagement implements PropertyChangeListener
   Map<String, ServiceAccount> accounts = new HashMap<>();
   MessageContainer messageContainer;
 
+  ServerMessageHandler serverMessageHandler;
+
+  public AccountManagement(ServerMessageHandler msgHandler)
+  {
+    this.serverMessageHandler = msgHandler;
+  }
+
   public void propertyChange(PropertyChangeEvent evt)
   {
     this.messageContainer = (MessageContainer)evt.getNewValue();
@@ -19,21 +26,6 @@ public class AccountManagement implements PropertyChangeListener
     // case wise handling of message passed down by server
     switch(messageContainer.menuOption)
     {
-      case ADD_USER:
-        break;
-
-      case ADD_USERS:
-        break;
-
-      case UPDATE_USER:
-        break;
-
-      case DELETE_USER:
-        break;
-
-      case DELETE_USERS:
-        break;
-
       case ADD_ACCOUNT_V1:
         break;
 

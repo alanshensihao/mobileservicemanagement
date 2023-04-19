@@ -44,7 +44,7 @@ public class Builder
   // rather than doing handling itself, now delegates work to each manager
   public void handleMessage(MessageContainer messageContainer)
   {
-    System.out.println("Delegating work for task: " + messageContainer + " to different managers.");
+    System.out.println("Delegating work for task: " + messageContainer.menuOption + " to different managers.");
     sendMessageContainer(messageContainer);
   }
 

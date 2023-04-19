@@ -7,6 +7,13 @@ public class BundleManagement implements PropertyChangeListener
   Map<String, Bundle> bundles = new HashMap<>();
   private MessageContainer messageContainer;
 
+  ServerMessageHandler serverMessageHandler;
+
+  public BundleManagement(ServerMessageHandler msgHandler)
+  {
+    this.serverMessageHandler = msgHandler;
+  }
+
   public void propertyChange(PropertyChangeEvent evt)
   {
     this.messageContainer = (MessageContainer)evt.getNewValue();
@@ -18,18 +25,6 @@ public class BundleManagement implements PropertyChangeListener
     // case wise handling of message passed down by server
     switch(messageContainer.menuOption)
     {
-      case ADD_ACCOUNT_V1:
-        break;
-
-      case ADD_ACCOUNT_V2:
-        break;
-
-      case DELETE_ACCOUNT:
-        break;
-
-      case UPDATE_ACCOUNT:
-        break;
-
       case ADD_PRE_BUNDLE:
         break;
 
@@ -40,18 +35,6 @@ public class BundleManagement implements PropertyChangeListener
         break;
 
       case ADD_PAC_BUNDLE_V3:
-        break;
-
-      case LIST_USER_DETAILS:
-        break;
-
-      case LIST_ALL_USERS:
-        break;
-
-      case LIST_ACCOUNT:
-        break;
-
-      case LIST_ACCOUNTS:
         break;
 
       case LIST_MONTHLY_FEES:
