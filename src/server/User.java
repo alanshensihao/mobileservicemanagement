@@ -4,6 +4,7 @@ public class User
   public String address;
   public String email;
   public int userId = 0;
+  public int numOfAssociatedAccounts = 0;
 
   public User(String fullName, String address, String email)
   {

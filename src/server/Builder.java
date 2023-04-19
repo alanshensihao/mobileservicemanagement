@@ -1,21 +1,32 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyChangeListener;
 
 public class Builder
 {
-  public class MessageContainer
-  {
-    public MenuOption menuOption;
-    public List<String> messageContents;
-
-    public MessageContainer()
-    {
-      this.messageContents = new ArrayList<String>();
-    } 
-  }
+  private MessageContainer messageContainer;
+  private PropertyChangeSupport support;
 
   public Builder()
   {
+    this.support = new PropertyChangeSupport(this);
+  }
+
+  public void addPropertyChangeListener(PropertyChangeListener pcl)
+  {
+    this.support.addPropertyChangeListener(pcl);
+  }
+
+  public void removePropertyChangeListener(PropertyChangeListener pcl)
+  {
+    this.support.removePropertyChangeListener(pcl);
+  }
+
+  public void sendMessageContainer(MessageContainer messageContainer)
+  {
+    this.support.firePropertyChange("Client Message", this.messageContainer, messageContainer);
+    this.messageContainer = messageContainer;
   }
 
   public void handleResponse(String message)
@@ -30,82 +41,12 @@ public class Builder
     handleMessage(messageContainer);
   }
 
+  // rather than doing handling itself, now delegates work to each manager
   public void handleMessage(MessageContainer messageContainer)
   {
-    switch(messageContainer.menuOption)
-    {
-      case ADD_USER:
-        break;
-
-      case ADD_USERS:
-        break;
-
-      case UPDATE_USER:
-        break;
-
-      case DELETE_USER:
-        break;
-
-      case DELETE_USERS:
-        break;
-
-      case ADD_ACCOUNT_V1:
-        break;
-
-      case ADD_ACCOUNT_V2:
-        break;
-
-      case DELETE_ACCOUNT:
-        break;
-
-      case UPDATE_ACCOUNT:
-        break;
-
-      case ADD_PRE_BUNDLE:
-        break;
-
-      case ADD_PAC_BUNDLE_V1:
-        break;
-
-      case ADD_PAC_BUNDLE_V2:
-        break;
-
-      case ADD_PAC_BUNDLE_V3:
-        break;
-
-      case LIST_USER_DETAILS:
-        break;
-
-      case LIST_ALL_USERS:
-        break;
-
-      case LIST_ACCOUNT:
-        break;
-
-      case LIST_ACCOUNTS:
-        break;
-
-      case LIST_MONTHLY_FEES:
-        break;
-
-      case LIST_MONTHLY_FEES_ALL:
-        break;
-
-      case LIST_BUNDLE_DETAILS:
-        break;
-
-      case LIST_ALL_PRE_BUNDLES:
-        break;
-
-      case LIST_ALL_PAC_BUNDLES:
-        break;
-
-      default:
-        System.out.println("Invalid menuOption");
-        break;
-    }
+    System.out.println("Delegating work for task: " + messageContainer + " to different managers.");
+    sendMessageContainer(messageContainer);
   }
-
 
   // TODO: The messages could be formatted better so the parsing is less error prone
   // Doesn't handle blank entries or entires with ';' currently

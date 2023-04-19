@@ -27,6 +27,10 @@ public class MDMServer
     bundleManagement = new BundleManagement();
     accountManagement = new AccountManagement();
 
+    builder.addPropertyChangeListener(userManagement);
+    builder.addPropertyChangeListener(bundleManagement);
+    builder.addPropertyChangeListener(accountManagement);
+
     while (true)
     {
       serverLoop();
